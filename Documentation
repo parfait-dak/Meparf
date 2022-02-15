@@ -1,0 +1,394 @@
+# BOOK API 
+
+## Getting Started
+
+### Installation des Dépendances
+
+#### Python 3.10.0
+#### pip 21.3.1 from C:\Users\hp\AppData\Local\Programs\Python\Python310\lib\site-packages\pip (python 3.10)
+
+Suivez les instructions suivantes pour installer l'ancienne version de python sur la plateforme [python docs](https://www.python.org/downloads/windows/#getting-and-installing-the-latest-version-of-python)
+
+#### Dépendances de PIP
+
+Pour installer les dépendances, ouvrez le dossier `/Documentation` et exécuter la commande suivante:
+
+```bash ou powershell ou cmd
+pip install -r requirements.txt
+or
+pip3 install -r requirements.txt
+```
+
+Nous passons donc à l'installation de tous les packages se trouvant dans le fichier `requirements.txt`.
+
+##### clé de Dépendances
+
+- [Flask](http://flask.pocoo.org/)  est un petit framework web Python léger, qui fournit des outils et des fonctionnalités utiles qui facilitent la création d’applications web en Python.
+
+- [SQLAlchemy](https://www.sqlalchemy.org/) est un toolkit open source SQL et un mapping objet-relationnel écrit en Python et publié sous licence MIT. SQLAlchemy a opté pour l'utilisation du pattern Data Mapper plutôt que l'active record utilisés par de nombreux autres ORM
+
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
+
+## Démarrer le serveur
+
+Pour démarrer le serveur sur Linux ou Mac, executez:
+
+```bash
+export FLASK_APP=app.py
+export FLASK_ENV=development
+flask run
+```
+Pour le démarrer sur Windows, executez:
+
+```bash
+set FLASK_APP=app.py
+set FLASK_ENV=development
+flask run
+``` 
+
+## API REFERENCE
+
+Getting starter
+
+Base URL: At present this app can only be run locally and is not hosted as a base URL. The backend app is hosted at the default, http://localhost:5000; which is set as a proxy in frontend configuration.
+
+## Type d'erreur
+Les erreurs sont renvoyées sou forme d'objet au format Json:
+{
+    "success":False
+    "error": 400
+    "message":"Ressource non disponible"
+}
+
+L'API vous renvoie 4 types d'erreur:
+. 400: Bad request ou ressource non disponible
+. 500: Internal server error
+. 422: Unprocessable
+. 404: Not found
+
+## Endpoints
+. ## GET/livres
+
+    GENERAL:
+        Cet endpoint retourne la liste des objets livres, la valeur du succès et le total des livres. 
+    
+        
+    EXEMPLE: curl http://localhost:5000/livres
+```
+      {
+    "livre": [
+        {
+            "auteur": "Tom",
+            "categorie_id": 1,
+            "date_publication": "Thu, 05 May 2005 00:00:00 GMT",
+            "editeur": "Todos",
+            "id": 1,
+            "isbn": "12A",
+            "titre": "Le requin"
+        },
+        {
+            "auteur": "Tomgam",
+            "categorie_id": 1,
+            "date_publication": "Wed, 03 Nov 2004 00:00:00 GMT",
+            "editeur": "Togou",
+            "id": 2,
+            "isbn": "12Z",
+            "titre": "Le Flic"
+        },
+        {
+            "auteur": "Vincent",
+            "categorie_id": 1,
+            "date_publication": "Wed, 10 Dec 2014 00:00:00 GMT",
+            "editeur": "TAGBA",
+            "id": 3,
+            "isbn": "12E",
+            "titre": "Le Lion"
+        },
+        {
+            "auteur": "Frederic",
+            "categorie_id": 1,
+            "date_publication": "Fri, 11 May 2018 00:00:00 GMT",
+            "editeur": "TAkpa",
+            "id": 4,
+            "isbn": "12R",
+            "titre": "Le Marche"
+        },
+        {
+            "auteur": "Americ",
+            "categorie_id": 2,
+            "date_publication": "Wed, 11 Dec 2019 00:00:00 GMT",
+            "editeur": "Vadam",
+            "id": 5,
+            "isbn": "12T",
+            "titre": "Armee"
+        },
+        {
+            "auteur": "Americ022",
+            "categorie_id": 2,
+            "date_publication": "Thu, 10 Dec 2020 00:00:00 GMT",
+            "editeur": "Vadapo",
+            "id": 6,
+            "isbn": "13A",
+            "titre": "Voleur"
+        },
+        {
+            "auteur": "Joell",
+            "categorie_id": 2,
+            "date_publication": "Fri, 10 Jul 2020 00:00:00 GMT",
+            "editeur": "Vadapo",
+            "id": 7,
+            "isbn": "133AZ",
+            "titre": "Femme"
+        },
+        {
+            "auteur": "Joella",
+            "categorie_id": 2,
+            "date_publication": "Sat, 10 Jul 2021 00:00:00 GMT",
+            "editeur": "Vadipo",
+            "id": 8,
+            "isbn": "133Aa",
+            "titre": "Homme depuit"
+        },
+        {
+            "auteur": "Cedric",
+            "categorie_id": 3,
+            "date_publication": "Wed, 11 Aug 2021 00:00:00 GMT",
+            "editeur": "Afrique",
+            "id": 9,
+            "isbn": "133AOP",
+            "titre": "Vengence"
+        },
+        {
+            "auteur": "Amos",
+            "categorie_id": 3,
+            "date_publication": "Sun, 11 Sep 2022 00:00:00 GMT",
+            "editeur": "Afrique",
+            "id": 10,
+            "isbn": "138AOP",
+            "titre": "Vengence de Dieu"
+        },
+        {
+            "auteur": "yannick",
+            "categorie_id": 4,
+            "date_publication": "Wed, 10 Oct 2012 00:00:00 GMT",
+            "editeur": "Afrique du sud",
+            "id": 11,
+            "isbn": "111AOP",
+            "titre": "Histoire de Afrique"
+        },
+        {
+            "auteur": "yannick",
+            "categorie_id": 4,
+            "date_publication": "Sun, 10 Oct 2010 00:00:00 GMT",
+            "editeur": "Afrique du sud",
+            "id": 12,
+            "isbn": "100AOP",
+            "titre": "Humoir"
+        },
+        {
+            "auteur": "yannick",
+            "categorie_id": 4,
+            "date_publication": "Wed, 10 Jun 2009 00:00:00 GMT",
+            "editeur": "Afrique du sud",
+            "id": 13,
+            "isbn": "100PPOP",
+            "titre": "Le mirroir"
+        },
+        {
+            "auteur": "Jonathan",
+            "categorie_id": 4,
+            "date_publication": "Wed, 10 Jun 2009 00:00:00 GMT",
+            "editeur": "France",
+            "id": 14,
+            "isbn": "100PPOP",
+            "titre": "La violence"
+        }
+    ],
+    "success": true,
+    "total_livre": 14
+}
+```
+
+.##GET/livres(id)
+  GENERAL:
+  Cet endpoint permet de récupérer les informations d'un livre particulier s'il existe par le biais de l'ID.
+
+    EXEMPLE: http://localhost:5000/livres/3
+```
+   {
+    "auteur": "Vincent",
+    "categorie_id": 1,
+    "date_publication": "Wed, 10 Dec 2014 00:00:00 GMT",
+    "editeur": "TAGBA",
+    "id": 3,
+    "isbn": "12E",
+    "titre": "Le Lion"
+}
+```
+
+
+. ## DELETE/livres (id)
+
+    GENERAL:
+        Supprimer un element si l'ID existe. Retourne l'ID du livre supprimé, la valeur du succès et le nouveau total.
+
+        EXEMPLE: curl -X DELETE http://localhost:5000/livres/4
+```
+    {
+    "delete successfully": 4,
+    "success": true
+}
+```
+
+. ##PATCH/livres(id)
+  GENERAL:
+  Cet endpoint permet de mettre à jour, le titre, l'auteur, et l'éditeur du livre.
+  Il retourne un livre mis à jour.
+
+  EXEMPLE.....Avec Patch
+  ``` curl -X PATCH http://localhost:5000/livres/1 -H "Content-Type:application/json" -d '{"auteur": "Azychika, Takumi Fukui","editeur": "Ki-oon","titre": "Jujutsu Kaisen"}'
+  ```
+  ```
+   {
+    "auteur": "Azychika, Takumi Fukui",
+    "categorie_id": 1,
+    "date_publication": "Thu, 05 May 2005 00:00:00 GMT",
+    "editeur": "Ki-oon",
+    "id": 1,
+    "isbn": "12A",
+    "titre": "Jujutsu Kaisen"
+}
+    ```
+
+. ## GET/categories
+
+    GENERAL:
+        Cet endpoint retourne la liste des categories de livres, la valeur du succès et le total des categories disponibles. 
+    
+        
+    EXEMPLE: curl http://localhost:5000/categories
+
+     {
+    "categorie": [
+        {
+            "id": 1,
+            "libelle": "Fixion"
+        },
+        {
+            "id": 2,
+            "libelle": "Policier"
+        },
+        {
+            "id": 3,
+            "libelle": "Conte"
+        },
+        {
+            "id": 4,
+            "libelle": "Harlequin"
+        },
+        {
+            "id": 5,
+            "libelle": "Science"
+        },
+        {
+            "id": 6,
+            "libelle": "Histoire"
+        }
+    ],
+    "success": true,
+    "total_categories": 6
+}
+```
+
+.##GET/categories(categorie_id)
+  GENERAL:
+  Cet endpoint permet de récupérer les informations d'une categorie si elle existe par le biais de l'ID.
+
+    EXEMPLE: http://localhost:5000/categories/6
+```
+    {
+    "id": 6,
+    "libelle": "Histoire"
+}
+```
+
+. ## DELETE/categories (categories_id)
+
+    GENERAL:
+        Supprimer un element si l'ID existe. Retourne l'ID da la catégorie supprimé, la valeur du succès et le nouveau total.
+
+        EXEMPLE: curl -X DELETE http://localhost:5000/categories/5
+```
+   {
+    "delete successfully": 5,
+    "success": true
+}
+```
+
+. ##PATCH/categories(categorie_id)
+  GENERAL:
+  Cet endpoint permet de mettre à jour le libelle ou le nom de la categorie.
+  Il retourne une nouvelle categorie avec la nouvelle valeur.
+
+  EXEMPLE.....Avec Patch
+  ``` curl -X PATCH 'http://localhost:5000/categories/4' -H "Content-Type:application/json" -d '{"categorie": "Bandes Dessinées"}'
+  ```
+  ```
+    {"categorie": "Bandes Dessinées"}
+
+.##GET/livres/categories(categorie_id)
+  GENERAL:
+  Cet endpoint permet de lister les livres appartenant à une categorie donnée.
+  Il renvoie la classe de la categorie et les livres l'appartenant.
+
+    EXEMPLE: http://localhost:5000/livres/categories/4
+```
+    {
+    "Status_code": 200,
+    "Success": true,
+    "books": [
+        {
+            "auteur": "Americ",
+            "categorie_id": 2,
+            "date_publication": "Wed, 11 Dec 2019 00:00:00 GMT",
+            "editeur": "Vadam",
+            "id": 5,
+            "isbn": "12T",
+            "titre": "Armee"
+        },
+        {
+            "auteur": "Americ022",
+            "categorie_id": 2,
+            "date_publication": "Thu, 10 Dec 2020 00:00:00 GMT",
+            "editeur": "Vadapo",
+            "id": 6,
+            "isbn": "13A",
+            "titre": "Voleur"
+        },
+        {
+            "auteur": "Joell",
+            "categorie_id": 2,
+            "date_publication": "Fri, 10 Jul 2020 00:00:00 GMT",
+            "editeur": "Vadapo",
+            "id": 7,
+            "isbn": "133AZ",
+            "titre": "Femme"
+        },
+        {
+            "auteur": "Joella",
+            "categorie_id": 2,
+            "date_publication": "Sat, 10 Jul 2021 00:00:00 GMT",
+            "editeur": "Vadipo",
+            "id": 8,
+            "isbn": "133Aa",
+            "titre": "Homme depuit"
+        }
+    ],
+    "classe": {
+        "id": 2,
+        "libelle": "Policier"
+    },
+    "total": 4
+}
+```
+
